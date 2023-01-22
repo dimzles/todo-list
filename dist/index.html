@@ -7,7 +7,24 @@
     <title>Todo List</title>
 </head>
 <body>
-    
+    <div id="container">
+        <div id="todo-container">
+
+        </div>
+        <div class="form-container">
+            <form action="">
+                <label for="task">Task:</label>
+                <input type="text" name="task" id="task" placeholder="What task do you need to complete?">
+                <label for="description">Description:</label>
+                <input type="text" name="description" id="description" placeholder="Describe the task.">
+                <label for="priority">Priority:</label>
+                <input type="text" name="priority" id="priority" placeholder="How important is this task?">
+                <label for="due-date">Due Date:</label>
+                <input type="date" name="due-date" id="due-date" placeholder="When do you need it done by?">
+            </form>
+            <button type="submit" id="create-btn">Create Todo</button>
+        </div>
+    </div>
     <script src="main.js"></script>
 </body>
 </html>
