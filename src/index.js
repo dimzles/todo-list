@@ -1,6 +1,6 @@
 import "./style.css";
 import updateDisplay from "./displayController";
-import { handleFormValues } from "./projects";
+import { handleFormValues, resetFormValues } from "./projects";
 
 updateDisplay();
 
@@ -10,6 +10,7 @@ const addCreateEvent = () => {
   submitBtn.addEventListener("click", () => {
     handleFormValues();
     updateDisplay();
+    resetFormValues();
   });
 };
 

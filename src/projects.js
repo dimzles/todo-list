@@ -15,13 +15,25 @@ const addToDos = () => {
   }
 };
 
-function handleFormValues() {
+const handleFormValues = () => {
   const task = document.getElementById("task").value;
   const description = document.getElementById("description").value;
   const priority = document.getElementById("priority").value;
   const dueDate = document.getElementById("due-date").value;
   const newTodo = new ToDo(task, description, priority, dueDate);
   return defaultProjects.push(newTodo);
-}
+};
 
-export { addToDos, handleFormValues };
+const resetFormValues = () => {
+  const task = document.getElementById("task");
+  const description = document.getElementById("description");
+  const priority = document.getElementById("priority");
+  const dueDate = document.getElementById("due-date");
+
+  task.value = "";
+  description.value = "";
+  priority.value = "";
+  dueDate.value = "";
+};
+
+export { addToDos, handleFormValues, resetFormValues };
