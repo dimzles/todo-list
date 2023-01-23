@@ -43,7 +43,7 @@ body {
     height: 100%;
 }
 
-form {
+.form-items {
     display: flex;
     flex-direction: column;
 }
