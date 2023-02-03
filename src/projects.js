@@ -12,19 +12,30 @@ const allProjects = [
   { projectName: "Second Project", projects: [test, test2, test3] },
 ];
 
+const checkCurrentProject = () => {
+  const projectBtns = document.querySelectorAll(".project-btn");
+  let index = 0;
+
+  projectBtns.forEach((btn) => {
+    if (btn.classList.contains("current"))
+      index = Number(btn.attributes[1].value);
+  });
+
+  return index;
+};
+
 const addToDos = () => {
   const todoContainer = document.getElementById("todo-container");
 
-  for (let i = 0; i < allProjects.length; i++) {
-    for (let j = 0; j < allProjects[i].projects.length; j++) {
-      const todoCard = document.createElement("div");
-      todoCard.classList.add("todo-card");
-      todoCard.setAttribute("data-card", j);
+  for (let i = 0; i < allProjects[checkCurrentProject()].projects.length; i++) {
+    const todoCard = document.createElement("div");
+    todoCard.classList.add("todo-card");
+    todoCard.setAttribute("data-card", i);
 
-      todoCard.textContent = allProjects[i].projects[j].getInfo();
+    todoCard.textContent =
+      allProjects[checkCurrentProject()].projects[i].getInfo();
 
-      todoContainer.appendChild(todoCard);
-    }
+    todoContainer.appendChild(todoCard);
   }
 };
 
