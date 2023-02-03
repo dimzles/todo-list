@@ -78,7 +78,7 @@ const resetFormValues = () => {
 };
 
 const deleteToDo = (index) => {
-  allProjects.defaultProject.splice(index, 1);
+  allProjects[checkCurrentProject()].projects.splice(index, 1);
 
   return allProjects;
 };
