@@ -4,44 +4,54 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
     <title>Todo List</title>
 </head>
 <body>
     <div id="container">
-        <div id="todo-container">
-
+      <div class="header">
+        <div class="header-container">
+          <span class="material-icons-outlined md-48">fact_check</span>
+          <p class="header-text">Todo List</p>
         </div>
-        <div class="form-container">
-            <form action="">
-                <div class="form-items">
-                  <label for="task">What task do you need to complete?</label>
-                  <input type="text" name="task" id="task">
-                </div>
-                <div class="form-items">
-                  <label for="description">Describe the task in a few words.</label>
-                  <input type="text" name="description" id="description">
-                </div>
-                <div class="form-items">
-                  <label for="priority">How would you prioritise this task?</label>
-                  <div>
-                    <input type="radio" name="priority" id="priority-low" value="Low" class="priority">
-                    <label for="priority-low">Low</label>
+        <button id="addToDo">Add New Todo</button>
+      </div>
+      <div class="main-content">
+        <div id="sidebar"></div>
+          <div id="todo-container">
+          </div>
+          <div class="form-container">
+              <form action="">
+                  <div class="form-items">
+                    <label for="task">What task do you need to complete?</label>
+                    <input type="text" name="task" id="task">
                   </div>
-                  <div>
-                    <input type="radio" name="priority" id="priority-med" value="Medium" class="priority">
-                    <label for="priority-med">Medium</label>
+                  <div class="form-items">
+                    <label for="description">Describe the task in a few words.</label>
+                    <input type="text" name="description" id="description">
                   </div>
-                  <div>
-                    <input type="radio" name="priority" id="priority-high" value="High" class="priority">
-                    <label for="priority-high">High</label>
+                  <div class="form-items">
+                    <label for="priority">How would you prioritise this task?</label>
+                    <div>
+                      <input type="radio" name="priority" id="priority-low" value="Low" class="priority">
+                      <label for="priority-low">Low</label>
+                    </div>
+                    <div>
+                      <input type="radio" name="priority" id="priority-med" value="Medium" class="priority">
+                      <label for="priority-med">Medium</label>
+                    </div>
+                    <div>
+                      <input type="radio" name="priority" id="priority-high" value="High" class="priority">
+                      <label for="priority-high">High</label>
+                    </div>
                   </div>
-                </div>
-                <div class="form-items">
-                  <label for="due-date">When do you need it done?</label>
-                  <input type="date" name="due-date" id="due-date">
-                </div>
-            </form>
-            <button type="submit" id="create-btn">Create Todo</button>
+                  <div class="form-items">
+                    <label for="due-date">When do you need it done?</label>
+                    <input type="date" name="due-date" id="due-date">
+                  </div>
+              </form>
+              <button type="submit" id="create-btn">Create Todo</button>
+          </div>
         </div>
     </div>
     <script src="main.js"></script>

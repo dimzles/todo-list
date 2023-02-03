@@ -1,5 +1,9 @@
 import "./style.css";
-import updateDisplay from "./displayController";
+import {
+  updateDisplay,
+  createSideBar,
+  updateSidebarButtons,
+} from "./displayController";
 import { handleFormValues, resetFormValues, deleteToDo } from "./projects";
 
 const addDeleteEvent = () => {
@@ -15,7 +19,8 @@ const addDeleteEvent = () => {
 
 const addCreateEvent = () => {
   const submitBtn = document.getElementById("create-btn");
-  submitBtn.addEventListener("click", () => {
+  submitBtn.addEventListener("click", (e) => {
+    e.preventDefault();
     handleFormValues();
     updateDisplay();
     resetFormValues();
@@ -23,6 +28,9 @@ const addCreateEvent = () => {
   });
 };
 
+createSideBar();
 updateDisplay();
 addCreateEvent();
 addDeleteEvent();
+
+updateSidebarButtons();

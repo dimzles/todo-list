@@ -3,18 +3,28 @@ import ToDo from "./createToDo";
 const testTodo = new ToDo("test", "desc-test", "high", "20/1/23");
 const testTodo2 = new ToDo("test2", "desc-test2", "high", "20/1/23");
 const testTodo3 = new ToDo("test3", "desc-test3", "high", "20/1/23");
+const test = new ToDo("this is");
+const test2 = new ToDo("a new");
+const test3 = new ToDo("project");
 
-const defaultProject = [testTodo, testTodo2, testTodo3];
+const allProjects = [
+  { projectName: "Home", projects: [testTodo, testTodo2, testTodo3] },
+  { projectName: "Second Project", projects: [test, test2, test3] },
+];
 
 const addToDos = () => {
   const todoContainer = document.getElementById("todo-container");
-  for (let i = 0; i < defaultProject.length; i++) {
-    const todoCard = document.createElement("div");
-    todoCard.classList.add("todo-card");
-    todoCard.setAttribute("data-card", i);
-    todoCard.textContent = defaultProject[i].getInfo();
 
-    todoContainer.appendChild(todoCard);
+  for (let i = 0; i < allProjects.length; i++) {
+    for (let j = 0; j < allProjects[i].projects.length; j++) {
+      const todoCard = document.createElement("div");
+      todoCard.classList.add("todo-card");
+      todoCard.setAttribute("data-card", j);
+
+      todoCard.textContent = allProjects[i].projects[j].getInfo();
+
+      todoContainer.appendChild(todoCard);
+    }
   }
 };
 
@@ -38,7 +48,7 @@ const handleFormValues = () => {
   const dueDate = document.getElementById("due-date").value;
 
   const newTodo = new ToDo(task, description, priorities, dueDate);
-  return defaultProject.push(newTodo);
+  return allProjects.defaultProject.push(newTodo);
 };
 
 const resetFormValues = () => {
@@ -57,9 +67,9 @@ const resetFormValues = () => {
 };
 
 const deleteToDo = (index) => {
-  defaultProject.splice(index, 1);
+  allProjects.defaultProject.splice(index, 1);
 
-  return defaultProject;
+  return allProjects;
 };
 
-export { addToDos, handleFormValues, resetFormValues, deleteToDo };
+export { addToDos, handleFormValues, resetFormValues, deleteToDo, allProjects };
