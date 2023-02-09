@@ -36,6 +36,7 @@ const updateSidebarButtons = () => {
     const btnContainer = document.getElementById("sidebar-btns");
 
     newButton.classList.add("project-btn");
+    newButton.setAttribute("data-index", i);
     newButton.textContent = allProjects[i].projectName;
 
     btnContainer.appendChild(newButton);

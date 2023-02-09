@@ -28,9 +28,23 @@ const addCreateEvent = () => {
   });
 };
 
+const addSwitchProjectEvent = () => {
+  const projectBtns = document.querySelectorAll(".project-btn");
+
+  projectBtns.forEach((btn) => {
+    btn.classList.remove("current");
+    btn.addEventListener("click", (e) => {
+      console.log(e);
+      e.target.classList.add("current");
+      updateDisplay();
+      addSwitchProjectEvent();
+    });
+  });
+};
+
 createSideBar();
 updateDisplay();
 addCreateEvent();
 addDeleteEvent();
-
 updateSidebarButtons();
+addSwitchProjectEvent();

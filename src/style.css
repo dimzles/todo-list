@@ -116,4 +116,12 @@ html, body {
   border-radius: 8px;
   font-family: var(--font);
   background-color: var(--light-accent);
+  font-weight: 500;
+}
+
+#addToDo {
+  border-radius: 8px;
+  font-size: 1rem;
+  padding: 0.5rem;
+  font-weight: bold;
 }
