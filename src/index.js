@@ -3,48 +3,75 @@ import {
   updateDisplay,
   createSideBar,
   updateSidebarButtons,
+  addProjectPopup,
+  removeActiveClass,
+  addDeleteEvent,
+  addSwitchProjectEvent,
+  addTodoPopup,
 } from "./displayController";
-import { handleFormValues, resetFormValues, deleteToDo } from "./projects";
+import {
+  handleTodoFormValues,
+  resetTodoFormValues,
+  handleNewProjectForm,
+  resetNewProjectForm,
+} from "./projects";
 
-const addDeleteEvent = () => {
-  const todoCards = document.querySelectorAll("[data-card]");
-  todoCards.forEach((todo) => {
-    todo.addEventListener("click", (e) => {
-      deleteToDo(e.target.attributes[1].value);
-      updateDisplay();
-      addDeleteEvent();
-    });
-  });
-};
-
-const addCreateEvent = () => {
+const addCreateToDoEvent = () => {
   const submitBtn = document.getElementById("create-btn");
   submitBtn.addEventListener("click", (e) => {
     e.preventDefault();
-    handleFormValues();
+    handleTodoFormValues();
     updateDisplay();
-    resetFormValues();
+    resetTodoFormValues();
     addDeleteEvent();
   });
 };
 
-const addSwitchProjectEvent = () => {
-  const projectBtns = document.querySelectorAll(".project-btn");
+const addProjectPopupEvent = () => {
+  const createProjectBtn = document.getElementById("new-project-btn");
 
-  projectBtns.forEach((btn) => {
-    btn.classList.remove("current");
-    btn.addEventListener("click", (e) => {
-      console.log(e);
-      e.target.classList.add("current");
-      updateDisplay();
-      addSwitchProjectEvent();
-    });
+  createProjectBtn.addEventListener("click", () => {
+    addProjectPopup();
+  });
+  console.log("popups added");
+};
+
+const addRemovePopupEvent = () => {
+  const popupContainer = document.getElementById("popup-container");
+
+  popupContainer.addEventListener("click", () => {
+    removeActiveClass();
+  });
+};
+
+const addTodoPopupEvent = () => {
+  const createTodoBtn = document.getElementById("addToDo");
+
+  createTodoBtn.addEventListener("click", () => {
+    addTodoPopup();
+  });
+};
+
+const addCreateProjectEvent = () => {
+  const submitBtn = document.getElementById("submit-new-project-btn");
+
+  submitBtn.addEventListener("click", (e) => {
+    console.log("submit click");
+    e.preventDefault();
+    handleNewProjectForm();
+    removeActiveClass();
+    resetNewProjectForm();
+    addSwitchProjectEvent();
   });
 };
 
 createSideBar();
 updateDisplay();
-addCreateEvent();
+addCreateToDoEvent();
 addDeleteEvent();
+addProjectPopupEvent();
 updateSidebarButtons();
 addSwitchProjectEvent();
+addRemovePopupEvent();
+addCreateProjectEvent();
+addTodoPopupEvent();
