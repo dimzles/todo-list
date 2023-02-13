@@ -24,25 +24,27 @@
               <form id="todo-form" action="">
                   <div class="form-items">
                     <label for="task">What task do you need to complete?</label>
-                    <input type="text" name="task" id="task">
+                    <input type="text" name="task" id="task" placeholder="Write 500 words" required>
                   </div>
                   <div class="form-items">
                     <label for="description">Describe the task in a few words.</label>
-                    <input type="text" name="description" id="description">
+                    <input type="text" name="description" id="description" placeholder="500 words for history essay">
                   </div>
                   <div class="form-items">
                     <label for="priority">How would you prioritise this task?</label>
-                    <div class="priority-container">
-                      <input type="radio" name="priority" id="priority-low" value="Low" class="priority">
-                      <label for="priority-low">Low</label>
-                    </div>
-                    <div class="priority-container">
-                      <input type="radio" name="priority" id="priority-med" value="Medium" class="priority">
-                      <label for="priority-med">Medium</label>
-                    </div>
-                    <div class="priority-container">
-                      <input type="radio" name="priority" id="priority-high" value="High" class="priority">
-                      <label for="priority-high">High</label>
+                    <div class="priority-items">
+                      <div class="priority-container">
+                        <input type="radio" name="priority" id="priority-low" value="Low" class="priority">
+                        <label for="priority-low">Low</label>
+                      </div>
+                      <div class="priority-container">
+                        <input type="radio" name="priority" id="priority-med" value="Medium" class="priority">
+                        <label for="priority-med">Medium</label>
+                      </div>
+                      <div class="priority-container">
+                        <input type="radio" name="priority" id="priority-high" value="High" class="priority">
+                        <label for="priority-high">High</label>
+                      </div>
                     </div>
                   </div>
                   <div class="form-items">
@@ -54,9 +56,12 @@
           </div>
           <div id="project-form-container">
             <form action="" id="new-project-form">
-              <input type="text" name="project-name" id="project-name" maxlength="64" required>
+              <div class="form-items">
+                <label for="project-name">New project name:</label>
+                <input type="text" name="project-name" id="project-name" maxlength="64" required>
+              </div>
             </form>
-            <button id="submit-new-project-btn" type="submit">Submit</button>
+            <button id="submit-new-project-btn" type="submit">Add Project</button>
           </div>
         </div>
         <div id="popup-container"></div>
