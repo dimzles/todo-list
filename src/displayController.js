@@ -6,7 +6,6 @@ const removeCurrentClass = () => {
   projectBtns.forEach((btn) => {
     btn.classList.remove("current");
   });
-  console.log("switch project");
 };
 
 const clearTodoDisplay = () => {

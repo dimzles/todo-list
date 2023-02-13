@@ -2,8 +2,8 @@ import ToDo from "./createToDo";
 import { createSidebarButton } from "./displayController";
 
 const testTodo = new ToDo("test", "desc-test", "high", "20/1/23");
-const testTodo2 = new ToDo("test2", "desc-test2", "high", "20/1/23");
-const testTodo3 = new ToDo("test3", "desc-test3", "high", "20/1/23");
+const testTodo2 = new ToDo("test2", "desc-test2", "med", "20/1/23");
+const testTodo3 = new ToDo("test3", "desc-test3", "low", "20/1/23");
 const test = new ToDo("this is");
 const test2 = new ToDo("a new");
 const test3 = new ToDo("project");
@@ -47,11 +47,35 @@ const addToDos = () => {
 
   for (let i = 0; i < allProjects[checkCurrentProject()].projects.length; i++) {
     const todoCard = document.createElement("div");
+    const todoTitle = document.createElement("div");
+    const todoDesc = document.createElement("div");
+    const todoPriority = document.createElement("div");
+    const todoDate = document.createElement("div");
+    const todoDelete = document.createElement("button");
+
     todoCard.classList.add("todo-card");
     todoCard.setAttribute("data-card", i);
+    todoDelete.setAttribute("id", "delete-btn");
 
-    todoCard.textContent =
-      allProjects[checkCurrentProject()].projects[i].getInfo();
+    todoTitle.classList.add("todo-title");
+    todoDesc.classList.add("todo-desc");
+    todoPriority.classList.add("todo-priority");
+    todoDate.classList.add("todo-date");
+
+    todoTitle.textContent = allProjects[checkCurrentProject()].projects[i].task;
+    todoDesc.textContent =
+      allProjects[checkCurrentProject()].projects[i].description;
+    todoPriority.textContent =
+      allProjects[checkCurrentProject()].projects[i].priority;
+    todoDate.textContent =
+      allProjects[checkCurrentProject()].projects[i].dueDate;
+    todoDelete.textContent = "Incomplete";
+
+    todoCard.appendChild(todoTitle);
+    todoCard.appendChild(todoDesc);
+    todoCard.appendChild(todoPriority);
+    todoCard.appendChild(todoDate);
+    todoCard.appendChild(todoDelete);
 
     todoContainer.appendChild(todoCard);
   }

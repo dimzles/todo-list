@@ -22,6 +22,7 @@ const addCreateToDoEvent = () => {
     e.preventDefault();
     handleTodoFormValues();
     updateDisplay();
+    removeActiveClass();
     resetTodoFormValues();
     addDeleteEvent();
   });
@@ -33,7 +34,6 @@ const addProjectPopupEvent = () => {
   createProjectBtn.addEventListener("click", () => {
     addProjectPopup();
   });
-  console.log("popups added");
 };
 
 const addRemovePopupEvent = () => {
@@ -56,7 +56,6 @@ const addCreateProjectEvent = () => {
   const submitBtn = document.getElementById("submit-new-project-btn");
 
   submitBtn.addEventListener("click", (e) => {
-    console.log("submit click");
     e.preventDefault();
     handleNewProjectForm();
     removeActiveClass();
