@@ -23,18 +23,18 @@
           <div id="todo-form-container">
               <form id="todo-form" action="">
                   <div class="form-items">
-                    <label for="task">What task do you need to complete?</label>
-                    <input type="text" name="task" id="task" placeholder="Write 500 words" required>
+                    <label for="task">What task do you need to complete?*</label>
+                    <input type="text" name="task" id="task" placeholder="Write 500 words" required maxlength="32">
                   </div>
                   <div class="form-items">
                     <label for="description">Describe the task in a few words.</label>
-                    <input type="text" name="description" id="description" placeholder="500 words for history essay">
+                    <input type="text" name="description" id="description" placeholder="500 words for history essay" maxlength="64">
                   </div>
                   <div class="form-items">
-                    <label for="priority">How would you prioritise this task?</label>
+                    <label for="priority">How would you prioritise this task?*</label>
                     <div class="priority-items">
                       <div class="priority-container">
-                        <input type="radio" name="priority" id="priority-low" value="Low" class="priority">
+                        <input type="radio" name="priority" id="priority-low" value="Low" class="priority" required>
                         <label for="priority-low">Low</label>
                       </div>
                       <div class="priority-container">
@@ -48,11 +48,11 @@
                     </div>
                   </div>
                   <div class="form-items">
-                    <label for="due-date">When do you need it done?</label>
-                    <input type="date" name="due-date" id="due-date">
+                    <label for="due-date">When do you need it done?*</label>
+                    <input type="date" name="due-date" id="due-date" required>
                   </div>
-              </form>
-              <button type="submit" id="create-btn">Create Todo</button>
+                  <button type="submit" id="create-btn">Create Todo</button>
+                </form>
           </div>
           <div id="project-form-container">
             <form action="" id="new-project-form">
@@ -60,8 +60,8 @@
                 <label for="project-name">New project name:</label>
                 <input type="text" name="project-name" id="project-name" maxlength="64" required>
               </div>
+              <button id="submit-new-project-btn" type="submit">Add Project</button>
             </form>
-            <button id="submit-new-project-btn" type="submit">Add Project</button>
           </div>
         </div>
         <div id="popup-container"></div>
