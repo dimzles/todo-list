@@ -17,8 +17,8 @@ import {
 } from "./projects";
 
 const addCreateToDoEvent = () => {
-  const submitBtn = document.getElementById("create-btn");
-  submitBtn.addEventListener("click", (e) => {
+  const todoForm = document.getElementById("todo-form");
+  todoForm.addEventListener("submit", (e) => {
     e.preventDefault();
     handleTodoFormValues();
     updateDisplay();

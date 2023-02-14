@@ -117,7 +117,6 @@ const removeActiveClass = () => {
   popupContainer.classList.remove("active");
   newProjectForm.classList.remove("active");
   newTodoForm.classList.remove("active");
-  console.log("classes removed");
 };
 
 export {

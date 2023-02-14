@@ -101,7 +101,7 @@ const handleTodoFormValues = () => {
   const dueDate = document.getElementById("due-date").value;
 
   const newTodo = new ToDo(task, description, priorities, dueDate);
-  return allProjects[checkCurrentProject()].projects.push(newTodo);
+  allProjects[checkCurrentProject()].projects.push(newTodo);
 };
 
 const resetTodoFormValues = () => {
