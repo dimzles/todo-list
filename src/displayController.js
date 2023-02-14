@@ -22,10 +22,10 @@ const updateDisplay = () => {
 };
 
 const addDeleteEvent = () => {
-  const todoCards = document.querySelectorAll("[data-card]");
-  todoCards.forEach((todo) => {
-    todo.addEventListener("click", (e) => {
-      deleteToDo(e.target.attributes[1].value);
+  const deleteBtns = document.querySelectorAll("#delete-btn");
+  deleteBtns.forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      deleteToDo(e.target.parentElement.attributes[1].value);
       updateDisplay();
       addDeleteEvent();
     });

@@ -52,6 +52,7 @@ const addToDos = () => {
     const todoPriority = document.createElement("div");
     const todoDate = document.createElement("div");
     const todoDelete = document.createElement("button");
+    const todoDeleteText = document.createElement("span");
 
     todoCard.classList.add("todo-card");
     todoCard.setAttribute("data-card", i);
@@ -69,7 +70,10 @@ const addToDos = () => {
       allProjects[checkCurrentProject()].projects[i].priority;
     todoDate.textContent =
       allProjects[checkCurrentProject()].projects[i].dueDate;
-    todoDelete.textContent = "Incomplete";
+
+    todoDeleteText.textContent = "Incomplete";
+
+    todoDelete.appendChild(todoDeleteText);
 
     todoCard.appendChild(todoTitle);
     todoCard.appendChild(todoDesc);
