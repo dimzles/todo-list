@@ -64,6 +64,24 @@ const addCreateProjectEvent = () => {
   });
 };
 
+const setMinimumDate = () => {
+  const today = new Date();
+  let minMonth = today.getMonth();
+  let minDay = today.getDate();
+
+  if (minMonth.toString().length === 1) minMonth = `0${today.getMonth() + 1}`;
+
+  if (minDay.toString().length === 1) minDay = `0${today.getDate()}`;
+
+  const minDate = `${today.getFullYear()}-${minMonth}-${minDay}`;
+
+  const dateInput = document.getElementById("due-date");
+
+  dateInput.setAttribute("min", minDate);
+  dateInput.toggleAttribute("required");
+};
+
+setMinimumDate();
 createSideBar();
 updateDisplay();
 addCreateToDoEvent();
