@@ -9,4 +9,14 @@ export default class ToDo {
   getInfo() {
     return `${this.task} | ${this.description} | ${this.priority} | ${this.dueDate}`;
   }
+
+  formatDate() {
+    const date = this.dueDate;
+
+    const splitDate = date.split("-");
+
+    return `"${splitDate[0]}", "${splitDate[1].split("0").join("")}", "${
+      splitDate[2]
+    }"`;
+  }
 }

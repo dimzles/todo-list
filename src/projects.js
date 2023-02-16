@@ -1,12 +1,13 @@
+import { formatDistanceToNow } from "date-fns";
 import ToDo from "./createToDo";
 import { createSidebarButton } from "./displayController";
 
-const testTodo = new ToDo("test", "desc-test", "high", "20/1/23");
-const testTodo2 = new ToDo("test2", "desc-test2", "med", "20/1/23");
-const testTodo3 = new ToDo("test3", "desc-test3", "low", "20/1/23");
-const test = new ToDo("this is");
-const test2 = new ToDo("a new");
-const test3 = new ToDo("project");
+const testTodo = new ToDo("test", "desc-test", "high", "2023-04-20");
+const testTodo2 = new ToDo("test2", "desc-test2", "med", "2023-05-20");
+const testTodo3 = new ToDo("test3", "desc-test3", "low", "2023-08-20");
+const test = new ToDo("this is", "", "medium", "2023-03-14");
+const test2 = new ToDo("a new", "", "medium", "2023-03-14");
+const test3 = new ToDo("project", "", "medium", "2023-03-14");
 
 class Project {
   constructor(projectName) {
@@ -68,8 +69,9 @@ const addToDos = () => {
       allProjects[checkCurrentProject()].projects[i].description;
     todoPriority.textContent =
       allProjects[checkCurrentProject()].projects[i].priority;
-    todoDate.textContent =
-      allProjects[checkCurrentProject()].projects[i].dueDate;
+    todoDate.textContent = `Due in ${formatDistanceToNow(
+      new Date(allProjects[checkCurrentProject()].projects[i].formatDate())
+    )}`;
 
     todoDeleteText.textContent = "Incomplete";
 
