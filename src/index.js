@@ -3,11 +3,12 @@ import {
   updateDisplay,
   createSideBar,
   updateSidebarButtons,
-  addProjectPopup,
+  addProjectPopupEvent,
   removeActiveClass,
   addDeleteEvent,
-  addSwitchProjectEvent,
+  removeCurrentClass,
   addTodoPopup,
+  addDeleteProjectEvent,
 } from "./displayController";
 import {
   handleTodoFormValues,
@@ -25,14 +26,6 @@ const addCreateToDoEvent = () => {
     removeActiveClass();
     resetTodoFormValues();
     addDeleteEvent();
-  });
-};
-
-const addProjectPopupEvent = () => {
-  const createProjectBtn = document.getElementById("new-project-btn");
-
-  createProjectBtn.addEventListener("click", () => {
-    addProjectPopup();
   });
 };
 
@@ -60,7 +53,7 @@ const addCreateProjectEvent = () => {
     handleNewProjectForm();
     removeActiveClass();
     resetNewProjectForm();
-    addSwitchProjectEvent();
+    removeCurrentClass();
   });
 };
 
@@ -88,7 +81,8 @@ addCreateToDoEvent();
 addDeleteEvent();
 addProjectPopupEvent();
 updateSidebarButtons();
-addSwitchProjectEvent();
+removeCurrentClass();
 addRemovePopupEvent();
 addCreateProjectEvent();
 addTodoPopupEvent();
+addDeleteProjectEvent();

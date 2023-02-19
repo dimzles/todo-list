@@ -299,3 +299,31 @@ input[type=text] {
 #delete-btn:hover {
   background-color: rgb(105, 175, 105);
 }
+
+.sidebar-btn-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px
+}
+
+.project-btn {
+  height: 2rem;
+  border-radius: 8px;
+  font-family: var(--font);
+  background-color: var(--light-accent);
+  font-weight: 500;
+  min-width: 10rem;
+}
+
+#delete-project-btn {
+  height: 2rem;
+  border-radius: 8px;
+  font-family: var(--font);
+  background-color: var(--light-accent);
+  font-weight: 500;
+  min-width: 1.5rem;
+}
+
+.fa-trash-can {
+  pointer-events: none;
+}

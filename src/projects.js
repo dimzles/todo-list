@@ -26,9 +26,12 @@ const createProject = (name) => {
 
   allProjects.push(newProject);
   const index = allProjects.length - 1;
-  console.log(allProjects);
 
   createSidebarButton(name, index);
+};
+
+const deleteProject = (index) => {
+  allProjects.splice(index, 1);
 };
 
 const checkCurrentProject = () => {
@@ -45,6 +48,10 @@ const checkCurrentProject = () => {
 
 const addToDos = () => {
   const todoContainer = document.getElementById("todo-container");
+
+  if (allProjects.length === 0) {
+    return;
+  }
 
   for (let i = 0; i < allProjects[checkCurrentProject()].projects.length; i++) {
     const todoCard = document.createElement("div");
@@ -153,4 +160,5 @@ export {
   resetNewProjectForm,
   deleteToDo,
   allProjects,
+  deleteProject,
 };
