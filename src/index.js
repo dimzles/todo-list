@@ -54,6 +54,7 @@ const addCreateProjectEvent = () => {
     removeActiveClass();
     resetNewProjectForm();
     removeCurrentClass();
+    addDeleteProjectEvent();
   });
 };
 
