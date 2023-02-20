@@ -152,6 +152,12 @@ html, body {
   border-radius: 8px;
   font-family: var(--font);
   background-color: var(--light-accent);
+  font-weight: 500;
+}
+
+#new-project-form {
+  display: flex;
+  gap: 16px;
 }
 
 
@@ -326,4 +332,9 @@ input[type=text] {
 
 .fa-trash-can {
   pointer-events: none;
+}
+
+.current {
+  background-color: purple;
+  color: white;
 }
