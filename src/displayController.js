@@ -1,4 +1,10 @@
-import { addToDos, allProjects, deleteToDo, deleteProject } from "./projects";
+import {
+  addToDos,
+  allProjects,
+  deleteToDo,
+  deleteProject,
+  checkCurrentProject,
+} from "./projects";
 
 const removeCurrentClass = () => {
   const projectBtns = document.querySelectorAll(".project-btn");
@@ -24,7 +30,6 @@ const updateDisplay = () => {
 const addDeleteEvent = () => {
   const deleteBtns = document.querySelectorAll("#delete-btn");
 
-  console.log(deleteBtns);
   deleteBtns.forEach((btn) => {
     btn.addEventListener("click", (e) => {
       deleteToDo(e.target.parentElement.attributes[1].value);
@@ -82,7 +87,12 @@ const createSidebarButton = (projectName, i) => {
 };
 
 const updateSidebarButtons = () => {
-  for (let i = 0; i < allProjects.length; i++) {
+  const projectsList = JSON.parse(localStorage.getItem(localStorage.key(0)));
+
+  if (localStorage.length === 0) return;
+  if (projectsList.length === 0) return;
+
+  for (let i = 0; i < projectsList.length; i++) {
     const newButton = document.createElement("button");
     const sidebarBtns = document.getElementById("sidebar-btns");
     const btnContainer = document.createElement("div");
@@ -91,7 +101,7 @@ const updateSidebarButtons = () => {
 
     newButton.classList.add("project-btn");
     newButton.setAttribute("data-index", i);
-    newButton.textContent = allProjects[i].projectName;
+    newButton.textContent = projectsList[i].projectName;
     newButton.addEventListener("click", (e) => {
       removeCurrentClass();
       e.target.classList.add("current");
@@ -155,10 +165,16 @@ const addProjectPopupEvent = () => {
   });
 };
 
+const setCurrentClass = () => {
+  const projectBtns = document.getElementsByClassName("project-btn");
+
+  if (projectBtns.length === 1) projectBtns[0].classList.add("current");
+  if (projectBtns.length > 1)
+    projectBtns[checkCurrentProject()].classList.add("current");
+};
+
 const addDeleteProjectEvent = () => {
   const deleteBtns = document.querySelectorAll("#delete-project-btn");
-
-  console.log(deleteBtns);
 
   deleteBtns.forEach((deleteBtn) => {
     deleteBtn.addEventListener("click", (e) => {
@@ -167,6 +183,8 @@ const addDeleteProjectEvent = () => {
       updateDisplay();
       addDeleteProjectEvent();
       addProjectPopupEvent();
+      setCurrentClass();
+      updateDisplay();
     });
   });
 };
@@ -184,4 +202,5 @@ export {
   addTodoPopup,
   addDeleteProjectEvent,
   addProjectPopupEvent,
+  setCurrentClass,
 };

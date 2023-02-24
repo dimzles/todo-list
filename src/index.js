@@ -9,6 +9,7 @@ import {
   removeCurrentClass,
   addTodoPopup,
   addDeleteProjectEvent,
+  setCurrentClass,
 } from "./displayController";
 import {
   handleTodoFormValues,
@@ -53,8 +54,8 @@ const addCreateProjectEvent = () => {
     handleNewProjectForm();
     removeActiveClass();
     resetNewProjectForm();
-    removeCurrentClass();
     addDeleteProjectEvent();
+    setCurrentClass();
   });
 };
 
@@ -87,3 +88,4 @@ addRemovePopupEvent();
 addCreateProjectEvent();
 addTodoPopupEvent();
 addDeleteProjectEvent();
+setCurrentClass();

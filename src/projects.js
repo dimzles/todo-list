@@ -2,13 +2,6 @@ import { formatDistanceToNow } from "date-fns";
 import ToDo from "./createToDo";
 import { createSidebarButton } from "./displayController";
 
-const testTodo = new ToDo("test", "desc-test", "high", "2023-04-20");
-const testTodo2 = new ToDo("test2", "desc-test2", "med", "2023-05-20");
-const testTodo3 = new ToDo("test3", "desc-test3", "low", "2023-08-20");
-const test = new ToDo("this is", "", "medium", "2023-03-14");
-const test2 = new ToDo("a new", "", "medium", "2023-03-14");
-const test3 = new ToDo("project", "", "medium", "2023-03-14");
-
 class Project {
   constructor(projectName) {
     this.projectName = projectName;
@@ -16,22 +9,30 @@ class Project {
   }
 }
 
-const allProjects = [
-  { projectName: "Home", projects: [testTodo, testTodo2, testTodo3] },
-  { projectName: "Second Project", projects: [test, test2, test3] },
-];
+const allProjects = [{ projectName: "Home", projects: [] }];
+
+if (localStorage.length === 0)
+  localStorage.setItem("All Projects", JSON.stringify(allProjects));
 
 const createProject = (name) => {
   const newProject = new Project(name);
 
-  allProjects.push(newProject);
-  const index = allProjects.length - 1;
+  const projectsList = JSON.parse(localStorage.getItem(localStorage.key(0)));
+
+  projectsList.push(newProject);
+  const index = projectsList.length - 1;
 
   createSidebarButton(name, index);
+
+  localStorage.setItem(localStorage.key(0), JSON.stringify(projectsList));
 };
 
 const deleteProject = (index) => {
-  allProjects.splice(index, 1);
+  const projectsList = JSON.parse(localStorage.getItem(localStorage.key(0)));
+
+  projectsList.splice(index, 1);
+
+  localStorage.setItem(localStorage.key(0), JSON.stringify(projectsList));
 };
 
 const checkCurrentProject = () => {
@@ -48,12 +49,17 @@ const checkCurrentProject = () => {
 
 const addToDos = () => {
   const todoContainer = document.getElementById("todo-container");
+  const projectsList = JSON.parse(localStorage.getItem(localStorage.key(0)));
 
-  if (allProjects.length === 0) {
+  if (projectsList.length === 0) {
     return;
   }
 
-  for (let i = 0; i < allProjects[checkCurrentProject()].projects.length; i++) {
+  for (
+    let i = 0;
+    i < projectsList[checkCurrentProject()].projects.length;
+    i++
+  ) {
     const todoCard = document.createElement("div");
     const todoTitle = document.createElement("div");
     const todoDesc = document.createElement("div");
@@ -61,6 +67,11 @@ const addToDos = () => {
     const todoDate = document.createElement("div");
     const todoDelete = document.createElement("button");
     const todoDeleteText = document.createElement("span");
+
+    const dueDate =
+      projectsList[checkCurrentProject()].projects[i].dueDate.split("-");
+
+    const formattedDueDate = `"${dueDate[0]}", "${dueDate[1]}", "${dueDate[2]}"`;
 
     todoCard.classList.add("todo-card");
     todoCard.setAttribute("data-card", i);
@@ -71,13 +82,14 @@ const addToDos = () => {
     todoPriority.classList.add("todo-priority");
     todoDate.classList.add("todo-date");
 
-    todoTitle.textContent = allProjects[checkCurrentProject()].projects[i].task;
+    todoTitle.textContent =
+      projectsList[checkCurrentProject()].projects[i].task;
     todoDesc.textContent =
-      allProjects[checkCurrentProject()].projects[i].description;
+      projectsList[checkCurrentProject()].projects[i].description;
     todoPriority.textContent =
-      allProjects[checkCurrentProject()].projects[i].priority;
+      projectsList[checkCurrentProject()].projects[i].priority;
     todoDate.textContent = `Due in ${formatDistanceToNow(
-      new Date(allProjects[checkCurrentProject()].projects[i].formatDate())
+      new Date(formattedDueDate)
     )}`;
 
     todoDeleteText.textContent = "Incomplete";
@@ -114,7 +126,13 @@ const handleTodoFormValues = () => {
   const dueDate = document.getElementById("due-date").value;
 
   const newTodo = new ToDo(task, description, priorities, dueDate);
-  allProjects[checkCurrentProject()].projects.push(newTodo);
+
+  if (localStorage.length === 0) return;
+  const projectsList = JSON.parse(localStorage.getItem(localStorage.key(0)));
+
+  projectsList[checkCurrentProject()].projects.push(newTodo);
+
+  localStorage.setItem(localStorage.key(0), JSON.stringify(projectsList));
 };
 
 const resetTodoFormValues = () => {
@@ -133,26 +151,28 @@ const resetTodoFormValues = () => {
 };
 
 const deleteToDo = (index) => {
-  allProjects[checkCurrentProject()].projects.splice(index, 1);
+  const key = localStorage.key(0);
+  const projectsList = JSON.parse(localStorage.getItem(key));
 
-  return allProjects;
+  projectsList[checkCurrentProject()].projects.splice(index, 1);
+
+  localStorage.setItem(key, JSON.stringify(projectsList));
 };
 
 const handleNewProjectForm = () => {
   const projectName = document.getElementById("project-name");
 
   createProject(projectName.value);
-  console.log(`project created ${projectName.value}`);
 };
 
 const resetNewProjectForm = () => {
   const input = document.getElementById("project-name");
 
   input.value = "";
-  console.log("form cleared");
 };
 
 export {
+  Project,
   addToDos,
   handleTodoFormValues,
   resetTodoFormValues,
@@ -161,4 +181,5 @@ export {
   deleteToDo,
   allProjects,
   deleteProject,
+  checkCurrentProject,
 };
